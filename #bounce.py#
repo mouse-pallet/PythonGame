@@ -50,6 +50,10 @@ class Paddle:
         self.canvas.bind_all('<KeyPress-Left>',self.turn_left)
         self.canvas.bind_all('<KeyPress-Right>',self.turn_right)
         self.canvas.bind_all('<Button-1>',self.start_game)
+        self.canvas.bind_all('<Double-Button-1>',self.restart_game)
+
+    def restart_game(self,evt):
+        self.game_start=False
 
     def start_game(self,evt):
         self.game_start=True
