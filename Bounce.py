@@ -53,8 +53,7 @@ class Paddle:
 
     def start_game(self,evt):
         self.game_start=True
-        
-
+       
     def turn_left(self,evt):
         self.x = -2
 
@@ -79,10 +78,19 @@ tk.update()
 
 paddle=Paddle(canvas,"blue")
 ball=Ball(canvas,paddle,"red")
+
+start_text=canvas.create_text(100,150,text='click to start game',font=('Times',20),state='hidden')
+
 while True:
+    if paddle.game_start==False and ball.hit_bottom == False:
+       canvas.itemconfig(start_text,state='normal')
     if paddle.game_start==True and ball.hit_bottom == False:
         ball.draw()
         paddle.draw()
+        canvas.itemconfig(start_text,state='hidden')
+    if ball.hit_bottom == True:
+        time.sleep(1.0)
+        canvas.create_text(100,150,text='Game Over',font=('Times',20))
     tk.update_idletasks()
     tk.update()
     time.sleep(0.01)
