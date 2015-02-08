@@ -79,8 +79,7 @@ tk.update()
 paddle=Paddle(canvas,"blue")
 ball=Ball(canvas,paddle,"red")
 
-start_text=canvas.create_text(100,150,text='click to start game',font=('T\  
-imes',20),state='hidden')
+start_text=canvas.create_text(100,150,text='click to start game',font=('Times',20),state='hidden')
 
 while True:
     if paddle.game_start==False and ball.hit_bottom == False:

@@ -21,7 +21,6 @@ class Ball:
         if pos[2] >= paddle_pos[0] and pos[0] <= paddle_pos[2]:
             if pos[3] >= paddle_pos[1] and pos[3] <= paddle_pos[3]:
                 return True
-            return True
         return False
 
 
