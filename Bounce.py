@@ -67,6 +67,15 @@ class Paddle:
         elif pos[2] >= self.canvas_width:
             self.x=0
 
+class Timer:
+    def __init__(self,canvas):
+        self.time=0
+        self.timer_text=canvas.create_text(20,20,text=str(self.time),font=('Times',25))
+
+    def count(self,canvas):
+        self.time+=1
+        canvas.itemconfig(self.timer_text,text=str(self.time))
+
 tk=Tk()
 tk.title("GAME")
 tk.resizable(0,0)
@@ -77,6 +86,9 @@ tk.update()
 
 paddle=Paddle(canvas,"blue")
 ball=Ball(canvas,paddle,"red")
+timer=Timer(canvas)
+
+rooptime=1
 
 start_text=canvas.create_text(100,150,text='click to start game',font=('Times',20),state='hidden')
 
@@ -87,9 +99,12 @@ while True:
         ball.draw()
         paddle.draw()
         canvas.itemconfig(start_text,state='hidden')
+        if rooptime%90==0:
+                timer.count(canvas)
     if ball.hit_bottom == True:
-        time.sleep(1.0)
+        time.sleep(0.5)
         canvas.create_text(100,150,text='Game Over',font=('Times',20))
     tk.update_idletasks()
     tk.update()
+    rooptime+=1
     time.sleep(0.01)
